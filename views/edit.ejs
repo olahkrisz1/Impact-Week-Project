@@ -1,0 +1,17 @@
+<%- include('components/header'); -%>
+
+    <a href="/question/<%= question._id %>">Back</a>
+    <h1>Edit your Question</h1>
+    <form method="POST" action="/edit/question/<%= question._id %>">
+        <label for="title">Question:</label>
+        <input type="text" id="title" name="title" value="<%= question.title %>" required>
+        <br>
+        <label for="text">Description:</label>
+        <textarea id="text" name="text" required>
+            <%= question.text %>
+        </textarea>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <%- include('components/footer'); -%>

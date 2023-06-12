@@ -1,15 +1,27 @@
 <%- include('components/header'); -%>
 
-    <header>
-        <div>
-
-        </div>
-        <div class="headings">
-            <h1>This is our homepage</h1>
-
-
-        </div>
-    </header>
+    <h1>Welcome to our community!</h1>
+    <a href="/new/question" class="add-new-question"><button id="btn_a">Ask a question</button></a>
+    <ul id="question_ul">
+        <% questions.forEach((question)=> { %>
+            <li id="question_li">
+                <a id="li_a" href="/question/<%= question._id %>">
+                    <%= question.title %>
+                </a>
+                <p id="li_p">
+                    <%= question.text.substring(0, 30) + '...' %>
+                </p>
+                <% if (question.createdAt) { %>
+                    <p class="timestamp" id="li_p">Created: <%= question.createdAt.toUTCString() %>
+                    </p>
+                    <% } %>
+                        <% if (question.updatedAt) { %>
+                            <p class="timestamp" id="li_p">Updated: <%= question.updatedAt.toUTCString() %>
+                            </p>
+                            <% } %>
+            </li>
+            <% }); %>
+    </ul>
 
 
     <%- include('components/footer'); -%>

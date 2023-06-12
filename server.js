@@ -2,7 +2,7 @@ require("dotenv").config();
 
 require("./config/mongoose");
 const express = require("express");
-const authRoutes = require("./config/authRoutes");
+const Routes = require("./config/Routes");
 const cookieParser = require("cookie-parser");
 const { requireAuth, checkUser } = require("./middleware/authMiddleware");
 const app = express();
@@ -17,10 +17,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Make app use the route
-// app.use(route);
 app.get("*", checkUser);
+
+// Use the question routes
+const questionRoutes = require("./config/Routes");
+app.use("/", questionRoutes);
+
+// Use the auth routes
+app.use(Routes);
+
 app.get("/", (req, res) => res.render("home"));
-app.use(authRoutes);
 
 let PORT = 9000;
 app.listen(PORT, () => console.log(`Server on ${PORT}`));

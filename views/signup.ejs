@@ -1,5 +1,5 @@
 <%- include('components/header'); -%>
-    <form>
+    <form id="signupform">
         <h2>Sign up</h2>
         <label for="username">User Name:</label>
         <input type="text" name="username" required placeholder="User Name" />
@@ -13,7 +13,7 @@
         <label>Repeat Password:</label>
         <input type="password" name="repassword" required />
         <div class="repassword error"></div>
-        <button>Sign up</button>
+        <button id="signupbtn">Sign up</button>
     </form>
 
     <script>

@@ -1,0 +1,15 @@
+<%- include('components/header'); -%>
+
+    <a href="/">Back</a>
+    <h1>
+        <%= question.title %>
+    </h1>
+    <p>
+        <%= question.text %>
+    </p>
+    <a href="/edit/question/<%= question._id %>">Edit</a>
+    <form class="qform" method="POST" action="/question/<%= question._id %>/delete" style="display:inline">
+        <button type="submit">Delete</button>
+    </form>
+
+    <%- include('components/footer'); -%>
