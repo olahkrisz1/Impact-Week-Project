@@ -19,14 +19,16 @@ app.use(express.json());
 // Make app use the route
 app.get("*", checkUser);
 
+app.get("/", (req, res) => res.render("home"));
+
+app.get("/allquestions", requireAuth, (req, res) => res.render("allquestions"));
+
 // Use the question routes
 const questionRoutes = require("./config/Routes");
-app.use("/", questionRoutes);
+app.use("/allquestions", questionRoutes);
 
-// Use the auth routes
+// Use the routes
 app.use(Routes);
-
-app.get("/", (req, res) => res.render("home"));
 
 let PORT = 9000;
 app.listen(PORT, () => console.log(`Server on ${PORT}`));

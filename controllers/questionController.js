@@ -3,12 +3,12 @@ const router = express.Router();
 const Question = require("../models/Question");
 
 // Home route - list questions
-const homepage = (req, res) => {
+const viewpage = (req, res) => {
   Question.find({})
     .populate("owner")
     .sort({ createdAt: -1 })
     .then((questions) => {
-      res.render("home", { user: req.user, questions });
+      res.render("allquestions", { user: req.user, questions });
     })
     .catch((error) => {
       console.error(error);
@@ -42,7 +42,7 @@ const createQuestion = (req, res) => {
   newQuestion
     .save()
     .then(() => {
-      res.redirect("/");
+      res.redirect("allquestions");
     })
     .catch((error) => {
       console.error(error);
@@ -78,7 +78,7 @@ const deleteQuestion = (req, res) => {
 
   Question.findByIdAndRemove(id)
     .then(() => {
-      res.redirect("/");
+      res.redirect("allquestion");
     })
     .catch((error) => {
       console.error(error);
@@ -135,7 +135,7 @@ const updateQuestion = (req, res) => {
       return question.save();
     })
     .then(() => {
-      res.redirect("/");
+      res.redirect("allquestions");
     })
     .catch((error) => {
       console.error(error);
@@ -145,7 +145,7 @@ const updateQuestion = (req, res) => {
 };
 
 module.exports = {
-  homepage,
+  viewpage,
   newQuestionForm,
   createQuestion,
   questionDetails,

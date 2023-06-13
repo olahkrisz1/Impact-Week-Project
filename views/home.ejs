@@ -1,29 +1,32 @@
 <%- include('components/header'); -%>
 
-    <h1>Welcome to our community!</h1>
-    <a href="/new/question" class="add-new-question"><button id="btn_a">Ask a question</button></a>
-    <ul id="question_ul">
-        <% questions.forEach((question)=> { %>
-            <li id="question_li">
-                <a id="li_a" href="/question/<%= question._id %>">
-                    <%= question.title %>
-                </a>
-                <p id="li_p">
-                    <%= question.text.substring(0, 30) + '...' %>
-                </p>
-                <h5>Added by: <%= question.owner && question.owner.username ? question.owner.username : 'Unknown' %>
-                </h5>
-                <% if (question.createdAt) { %>
-                    <p class="timestamp" id="li_p">Created: <%= question.createdAt.toUTCString() %>
-                    </p>
-                    <% } %>
-                        <% if (question.updatedAt) { %>
-                            <p class="timestamp" id="li_p">Updated: <%= question.updatedAt.toUTCString() %>
-                            </p>
-                            <% } %>
-            </li>
-            <% }); %>
-    </ul>
+    <header>
 
+        <div class="headings">
+            <h2>Welcome to Matrix Master</h2>
+            <h3>Where you will find answers to all your questions!</h3>
+            <a href="/allquestions" class="btn">View Questions</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <% if (user) { %>
+
+            <h1>Welcome,
+                <%= user.username %>
+            </h1>
+            <div>
+                <h3>You can post questions to find your answers and make comments on other's....</h3>
+                <h4>...and if you're still cannot find an answer, just ask our own AI supported virtual assistant!!</h4>
+            </div>
+
+
+            <% } else { %>
+                <hr>
+                <h4>Please Login First To Go Further:-</h4>
+
+                <% } %>
+
+    </div>
 
     <%- include('components/footer'); -%>

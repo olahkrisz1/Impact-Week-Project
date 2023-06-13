@@ -1,3 +1,4 @@
+const { Router } = require("express");
 const express = require("express");
 const authController = require("../controllers/authController");
 const questionController = require("../controllers/questionController");
@@ -10,7 +11,8 @@ router.get("/login", authController.login_get);
 router.post("/login", authController.login_post);
 router.get("/logout", authController.logout_get);
 
-router.get("/", questionController.homepage);
+router.get("/allquestions", questionController.viewpage);
+
 router.get("/new/question", questionController.newQuestionForm);
 router.post("/new/question/:id", questionController.createQuestion);
 router.get("/question/:id", questionController.questionDetails);
