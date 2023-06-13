@@ -12,6 +12,10 @@ const questionSchema = new mongoose.Schema(
       required: true,
       minlength: 10,
     },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
   },
   { timestamps: true }
 );

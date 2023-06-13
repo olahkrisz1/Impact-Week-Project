@@ -7,9 +7,11 @@
     <p>
         <%= question.text %>
     </p>
-    <a href="/edit/question/<%= question._id %>">Edit</a>
-    <form class="qform" method="POST" action="/question/<%= question._id %>/delete" style="display:inline">
-        <button type="submit">Delete</button>
-    </form>
+    <% if(question.owner._id.toString ()===user._id.toString()) { %>
+        <a href="/edit/question/<%= question._id %>">Edit</a>
+        <form class="qform" method="POST" action="/question/<%= question._id %>/delete" style="display:inline">
+            <button type="submit">Delete</button>
+        </form>
+        <% } %>
 
-    <%- include('components/footer'); -%>
+            <%- include('components/footer'); -%>

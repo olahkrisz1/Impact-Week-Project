@@ -5,6 +5,7 @@ const Question = require("../models/Question");
 // Home route - list questions
 const homepage = (req, res) => {
   Question.find({})
+    .populate("owner")
     .sort({ createdAt: -1 })
     .then((questions) => {
       res.render("home", { user: req.user, questions });
@@ -35,6 +36,7 @@ const createQuestion = (req, res) => {
     title,
     text,
     createdAt: new Date(),
+    owner: req.params.id,
   });
 
   newQuestion

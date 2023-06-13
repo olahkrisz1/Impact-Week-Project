@@ -2,7 +2,7 @@
 
     <a href="/">Back</a>
     <h1>Ask a new Question</h1>
-    <form class='qform' method="POST" action="/new/question">
+    <form class='qform' method="POST" action="/new/question/<%= user._id %>">
         <label for="title">Question:</label>
         <input class="qinput" type="text" id="title" name="title" required minlength="10">
         <br>

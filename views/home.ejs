@@ -11,6 +11,8 @@
                 <p id="li_p">
                     <%= question.text.substring(0, 30) + '...' %>
                 </p>
+                <h5>Added by: <%= question.owner && question.owner.username ? question.owner.username : 'Unknown' %>
+                </h5>
                 <% if (question.createdAt) { %>
                     <p class="timestamp" id="li_p">Created: <%= question.createdAt.toUTCString() %>
                     </p>

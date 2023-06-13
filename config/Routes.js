@@ -12,7 +12,7 @@ router.get("/logout", authController.logout_get);
 
 router.get("/", questionController.homepage);
 router.get("/new/question", questionController.newQuestionForm);
-router.post("/new/question", questionController.createQuestion);
+router.post("/new/question/:id", questionController.createQuestion);
 router.get("/question/:id", questionController.questionDetails);
 router.post("/question/:id/delete", questionController.deleteQuestion);
 router.get("/edit/question/:id", questionController.editQuestionForm);
