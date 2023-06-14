@@ -12,6 +12,7 @@ const newComment = async (req, res) => {
     const comment = new Comment({
       postId: id,
       comments,
+      owner: req.params.id,
     });
 
     // Save the comment

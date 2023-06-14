@@ -31,11 +31,15 @@ const checkUser = (req, res, next) => {
       } else {
         let user = await User.findById(decodedToken.id);
         res.locals.user = user;
+        res.locals.userId = user._id;
+        res.locals.userMail = user.email;
         next();
       }
     });
   } else {
     res.locals.user = null;
+    res.locals.userId = null;
+    res.locals.userMail = null;
     next();
   }
 };
