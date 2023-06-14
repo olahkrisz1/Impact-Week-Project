@@ -16,7 +16,7 @@
         <% } %>
 
             <br>
-            <form action="/question/<%= question._id %>/comment" method="POST">
+            <form action="/question/<%= question._id %>/comment?userId=<%= user._id %>" method="POST">
                 <input type="hidden" name="postId" value="<%= question._id %>">
                 <textarea name="comments" placeholder="Add a comment"></textarea>
                 <button type="submit">Add Comment</button>
@@ -29,7 +29,8 @@
                         <p>
                             <%= comment.comments %>
                         </p>
-                        <p><strong>Comment added by: <%= comment.user_name %></strong></p>
+
+                        <p><strong>Comment added by: <%= comment.owner.username %></strong></p>
                     </div>
                     <% }); %>
             </div>

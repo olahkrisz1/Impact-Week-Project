@@ -58,13 +58,16 @@ const questionDetails = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const question = await Question.findById(id).populate("comments");
+    const question = await Question.findById(id).populate({
+      path: "comments",
+      populate: { path: "owner" },
+    });
     if (!question) {
       const errorMessage = "Question not found.";
       res.render("error", { errorMessage });
       return;
     }
-    console.log(question);
+
     res.render("question", { question });
   } catch (error) {
     console.error(error);

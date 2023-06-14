@@ -7,14 +7,15 @@ const newComment = async (req, res) => {
   try {
     const { id } = req.params;
     const { comments } = req.body;
+    const userId = req.query.userId;
 
     // Create a new comment
     const comment = new Comment({
       postId: id,
       comments,
-      owner: req.params.id,
+      owner: userId,
     });
-
+    //console.log("New Comment:", comment);
     // Save the comment
     await comment.save();
 
