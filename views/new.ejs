@@ -1,0 +1,15 @@
+<%- include('components/header'); -%>
+
+    <a href="/allquestions">Back</a>
+    <h1>Ask a new Question</h1>
+    <form class='qform' method="POST" action="/new/question/<%= user._id %>">
+        <label for="title">Question:</label>
+        <input class="qinput" type="text" id="title" name="title" required minlength="10">
+        <br>
+        <label for="text">Description:</label>
+        <textarea class="qtextarea" id="text" name="text" required minlength="10"></textarea>
+        <br>
+        <input class="qinputbtn" type="submit" value="Submit">
+    </form>
+
+    <%- include('components/footer'); -%>

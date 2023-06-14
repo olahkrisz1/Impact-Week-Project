@@ -1,15 +1,32 @@
 <%- include('components/header'); -%>
 
     <header>
-        <div>
 
-        </div>
         <div class="headings">
-            <h1>This is our homepage</h1>
-
-
+            <h2>Welcome to Matrix Master</h2>
+            <h3>Where you will find answers to all your questions!</h3>
+            <a href="/allquestions" class="btn">View Questions</a>
         </div>
     </header>
 
+    <div class="container">
+        <% if (user) { %>
+
+            <h1>Welcome,
+                <%= user.username %>
+            </h1>
+            <div>
+                <h3>You can post questions to find your answers and make comments on other's....</h3>
+                <h4>...and if you're still cannot find an answer, just ask our own AI supported virtual assistant!!</h4>
+            </div>
+
+
+            <% } else { %>
+                <hr>
+                <h4>Please Login first to proceed:</h4>
+
+                <% } %>
+
+    </div>
 
     <%- include('components/footer'); -%>
