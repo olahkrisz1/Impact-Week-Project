@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Question = require("../models/Question");
+const Comment = require("../models/Comment");
 
 // Home route - list questions
 const viewpage = (req, res) => {
@@ -35,6 +36,7 @@ const createQuestion = (req, res) => {
   const newQuestion = new Question({
     title,
     text,
+    comments: [],
     createdAt: new Date(),
     owner: req.params.id,
   });
@@ -52,24 +54,23 @@ const createQuestion = (req, res) => {
 };
 
 // Question details route
-const questionDetails = (req, res) => {
+const questionDetails = async (req, res) => {
   const { id } = req.params;
 
-  Question.findById(id)
-    .then((question) => {
-      if (!question) {
-        const errorMessage = "Question not found.";
-        res.render("error", { errorMessage });
-        return;
-      }
-
-      res.render("question", { question: question });
-    })
-    .catch((error) => {
-      console.error(error);
-      const errorMessage = "Internal Server Error";
+  try {
+    const question = await Question.findById(id).populate("comments");
+    if (!question) {
+      const errorMessage = "Question not found.";
       res.render("error", { errorMessage });
-    });
+      return;
+    }
+    console.log(question);
+    res.render("question", { question });
+  } catch (error) {
+    console.error(error);
+    const errorMessage = "Internal Server Error";
+    res.render("error", { errorMessage });
+  }
 };
 
 // Delete question route

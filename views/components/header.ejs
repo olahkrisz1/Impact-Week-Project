@@ -11,8 +11,8 @@
     <nav>
         <h1><a href="/">Matrix Master Community</a></h1>
         <ul>
-            <% if (user) { %>
-                <li>Welcome, <%= user.email %>
+            <% if (userId) { %>
+                <li>Welcome, <%= userMail %>
                 </li>
                 <li><a href="/logout">Log out</a></li>
                 <% } else { %>
