@@ -32,4 +32,5 @@ router.post(
   authMiddleware.checkUser,
   commentController.deleteComment
 );
+
 module.exports = router;
