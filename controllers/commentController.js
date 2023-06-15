@@ -46,8 +46,14 @@ const deleteComment = (req, res) => {
   const { id } = req.params;
 
   Comment.findByIdAndRemove(id)
-    .then(() => {
-      res.redirect("/allquestions"); // Replace with the appropriate URL or route
+    .then((comment) => {
+      if (!comment) {
+        console.log("Comment not found");
+        return res.status(404).json({ error: "Comment not found" });
+      }
+
+      // Redirect to the question details page
+      res.redirect(`/question/${comment.postId.toString()}`);
     })
     .catch((error) => {
       console.error(error);
