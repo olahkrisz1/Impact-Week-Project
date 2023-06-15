@@ -15,6 +15,7 @@ router.get("/logout", authController.logout_get);
 router.get("/allquestions", questionController.viewpage);
 
 router.get("/new/question", questionController.newQuestionForm);
+router.post("/chat", questionController.askOpenai);
 router.post("/new/question/:id", questionController.createQuestion);
 router.get("/question/:id", questionController.questionDetails);
 router.post("/question/:id/delete", questionController.deleteQuestion);

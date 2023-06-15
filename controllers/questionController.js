@@ -1,7 +1,16 @@
 const express = require("express");
 const router = express.Router();
+require("dotenv").config();
 const Question = require("../models/Question");
-const Comment = require("../models/Comment");
+const openai = require("openai");
+
+//Configure OpenAI
+const configuration = new openai.Configuration({
+  organization: process.env.OPENAI_ORG,
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openaiapi = new openai.OpenAIApi(configuration);
 
 // Home route - list questions
 const viewpage = (req, res) => {
@@ -20,6 +29,19 @@ const viewpage = (req, res) => {
 // New question form route
 const newQuestionForm = (req, res) => {
   res.render("new");
+};
+
+const askOpenai = async (req, res) => {
+  const messages = req.body.messages;
+  const model = req.body.model;
+  const temp = req.body.temp;
+
+  const completion = await openaiapi.createChatCompletion({
+    model: model,
+    messages: messages,
+    temperature: temp,
+  });
+  res.status(200).json({ result: completion.data.choices });
 };
 
 // Create a new question
@@ -151,6 +173,7 @@ const updateQuestion = (req, res) => {
 module.exports = {
   viewpage,
   newQuestionForm,
+  askOpenai,
   createQuestion,
   questionDetails,
   deleteQuestion,
