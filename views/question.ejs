@@ -31,6 +31,15 @@
                         </p>
 
                         <p><strong>Comment added by: <%= comment.owner.username %></strong></p>
+                        <% if (comment.owner._id.toString()===user._id.toString()) { %>
+                            <form class="delete-comment-form" method="POST" action="/comment/<%= comment._id %>/delete"
+                                style="display:inline">
+                                <button type="submit">Delete Comment</button>
+                            </form>
+
+
+                            <% } %>
+                                <% console.log('Comment:', comment); %>
                     </div>
                     <% }); %>
             </div>

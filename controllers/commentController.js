@@ -7,7 +7,7 @@ const newComment = async (req, res) => {
   try {
     const { id } = req.params;
     const { comments } = req.body;
-    const userId = req.query.userId;
+    const { userId } = req.query;
 
     // Create a new comment
     const comment = new Comment({
@@ -42,15 +42,18 @@ const getComments = async (request, response) => {
   }
 };
 
-const deleteComment = async (request, response) => {
-  try {
-    const comment = await Comment.findById(request.params.id);
-    await comment.delete();
+const deleteComment = (req, res) => {
+  const { id } = req.params;
 
-    response.status(200).json("comment deleted successfully");
-  } catch (error) {
-    response.status(500).json(error);
-  }
+  Comment.findByIdAndRemove(id)
+    .then(() => {
+      res.redirect("/allquestions"); // Replace with the appropriate URL or route
+    })
+    .catch((error) => {
+      console.error(error);
+      const errorMessage = "Internal Server Error";
+      res.render("error", { errorMessage });
+    });
 };
 
 module.exports = {
