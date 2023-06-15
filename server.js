@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 require("./config/mongoose");
+const openai = require("openai");
 const express = require("express");
 const Routes = require("./config/Routes");
 const cookieParser = require("cookie-parser");
