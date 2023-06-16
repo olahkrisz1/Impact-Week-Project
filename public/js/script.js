@@ -47,3 +47,40 @@ const generateResponse = async () => {
 
 //Assign onclick method
 submit.onclick = generateResponse;
+
+let recognition = new webkitSpeechRecognition();
+let textbox = $("#title");
+let instructions = $("#instructions");
+let content = "";
+
+recognition.continuous = true;
+
+recognition.onstart = function () {
+  instructions.text("Voice recognition is on");
+};
+
+recognition.onspeechend = function () {
+  instructions.text("No activity");
+};
+
+recognition.onerror = function () {
+  instructions.text("Try again");
+};
+
+recognition.onresult = function (event) {
+  let current = event.resultIndex;
+  let transcript = event.results[current][0].transcript;
+  content += transcript;
+  textbox.val(content);
+};
+
+$("#start-btn").click(function (event) {
+  if (content.length) {
+    content += " ";
+  }
+  recognition.start();
+});
+
+textbox.on("input", function () {
+  content = $(this).val();
+});
