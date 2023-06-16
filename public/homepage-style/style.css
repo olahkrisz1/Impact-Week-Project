@@ -1,0 +1,125 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+  
+  body {
+      background:#F7F7F7;
+      font-family: 'Titillium Web', sans-serif;
+    }
+    header .headings a {
+      border-radius: 15px;
+      background: rgb(19, 35, 47, 0.9);
+      color: white;
+      height: 60px;
+      width: 650px;
+      height: 50px;
+      font-size: 16px !important;
+    }
+  h1,h2,ul,li,a,p,input,div,
+  footer {
+    font-family: "Roboto", sans-serif;
+    color:#A0B3B0;
+  }
+
+  a {
+    text-decoration: none;
+   
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color:rgb(19, 35, 47, 0.9);
+    border-radius:4px;
+    box-shadow:0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    height: 120px;
+    text-align: center;
+  }
+  nav ul {
+    display: flex;
+    align-items: center;
+  }
+  nav li {
+    margin-left: 20px;
+    list-style: none;
+  }
+  nav li a {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.8em;
+    display: block;
+    padding: 10px 16px;
+    letter-spacing: 2px;
+    
+  }
+  .btn {
+    border-radius: 15px;
+    background: rgb(19, 35, 47, 0.9);
+    color: white !important;
+    height: 45px;
+    width: 150px;
+    justify-content: center;
+  }
+  #flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 20px;
+    padding: 20px;
+    width: 45%;
+    
+}
+#flex h1{
+color: #c2bebe;
+    
+}
+li{
+    list-style: none;
+}
+.flex-time{
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    color: rgb(19, 35, 47, 0.9);
+    font-size: 13px;
+}
+.flex-time p{
+
+    color: rgba(20, 88, 140, 0.9);
+    font-size: 13px;
+    font-weight: bold;
+}
+h5{
+    color: rgb(15, 118, 183);
+    font-style: italic;
+    text-align: end;
+    width: 700px;
+}
+.para{
+    font-size: 16px;
+    color: black;
+    width: 700px;
+}
+
+
+footer {
+    text-align: end;
+    margin-top: 120px;
+    color: #aaa;
+    padding: 20px;
+  }
+  h3{
+    font-size: 16px;
+    color: rgb(19, 35, 47, 0.9);
+
+  &:hover, &:focus {
+    color:#128cae;
+  }
+}
+
+.headings h3 {
+  font-size: 16px;
+  color: rgb(19, 35, 47, 0.9);
+}

@@ -1,0 +1,62 @@
+<%- include('header-form/header-form'); -%>
+<div id="flex">
+    <h1> <%= question.title %></h1>
+    <a href="/allquestions">Back</a>
+</div>
+    <p class="para"><%= question.text %></p>
+
+    <% if(question.owner._id.toString()===user._id.toString()) { %>
+        <div id="flex">
+            <a href="/edit/question/<%= question._id %>">Edit</a>
+            <form class="qform" method="POST" action="/question/<%= question._id %>/delete" style="display:inline">
+            <input Id="delete" type="submit" value="Delete"></input>
+        </form>
+        </div>
+        <% } %>
+            <form class="form-style-9 form" action="/question/<%= question._id %>/comment?userId=<%= user._id %>" method="POST">
+                <input type="hidden" name="postId" value="<%= question._id %>">
+                <ul>
+                    <li>
+                        <textarea class="field-style text" name="comments" placeholder="Add a comment"></textarea>
+                    </li>
+                    <div id="comment">
+                        <li>
+                            <label for="submit">Add Comment</label>
+                        </li>
+                        <li>
+                            <input type="submit"></input>
+                        </li>
+                    </div>
+                    
+                </ul>
+                
+                
+            </form>
+
+            <!-- Display comments -->
+            <div class="comments">
+                <% question.comments.forEach(function(comment) { %>
+                    <div class="comment">
+                        <p class="para">
+                            <%= comment.comments %>
+                        </p>
+                        <p class="para" class="comment-owner"><em class="comment-owner">Comment added by: <%= comment.owner.username %></em></p>
+                        <% if (comment.owner._id.toString()===user._id.toString()) { %>
+                            <form  method="POST" action="/comment/<%= comment._id %>/delete" style="display:inline">
+                                <div id="delete-comment">
+                                    <li>
+                                        <label for="submit">Delete Comment</label>
+                                    </li>
+                                    <li>
+                                        <input Id="delete" type="submit" value="Delete"></input>
+                                    </li>
+                                </div>
+                            </form>
+                            <% } %>
+                                <% console.log('Comment:', comment); %>
+                    </div>
+                    <% }); %>
+            </div>
+
+
+            <%- include('components/footer'); -%>

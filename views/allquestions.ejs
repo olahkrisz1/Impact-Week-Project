@@ -1,0 +1,34 @@
+<%- include('components/header-home/home-header'); -%>
+<div id="flex">
+    <h1>Welcome to our community!</h1>
+    <a href="/new/question" class="add-new-question"><button class="btn">Ask a question</button></a>
+</div>
+    
+    <ul id="question_ul">
+        <% questions.forEach((question)=> { %>
+
+            <li id="question_li">
+                <a id="li_a" href="/question/<%= question._id %>">
+                   <h3><%= question.title %></h3> 
+                </a>
+                <p class="para">
+                    <%= question.text.substring(0, 30) + '...' %>
+                </p>
+                <h5>Added by: <%= question.owner && question.owner.username ? question.owner.username : 'Unknown' %>
+                </h5>
+                <% if (question.createdAt) { %>
+                    <div class="flex-time">
+                        <p class="timestamp" id="li_p">Created: <%= question.createdAt.toUTCString() %>
+                        </p>
+                        <% } %>
+                            <% if (question.updatedAt) { %>
+                                <p class="timestamp" id="li_p">Updated: <%= question.updatedAt.toUTCString() %>
+                                </p>
+                    </div>
+                            <% } %>
+            </li>
+            <% }); %>
+    </ul>
+
+
+    <%- include('components/footer'); -%>

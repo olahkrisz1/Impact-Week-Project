@@ -1,0 +1,21 @@
+<%- include('header-form/header-form'); -%>
+<div id="flex">
+    <h1>Ask a new Question</h1>
+    <a href="/allquestions">Back</a>
+</div>
+    
+    <form class="form-style-9" method="POST" action="/new/question/<%= user._id %>">
+        <ul>
+            <li>
+                <input class="field-style field-full align-none" type="text" id="title" name="title" required minlength="10" placeholder="Question">
+            </li>
+            <li>
+                <textarea class="field-style" id="text" name="text" required minlength="10" placeholder="Question Details"></textarea>
+            </li>
+            <li>
+                <input  type="submit" value="Submit">
+            </li>
+        </ul>
+    </form>
+
+    <%- include('components/footer'); -%>
