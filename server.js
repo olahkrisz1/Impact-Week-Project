@@ -41,5 +41,5 @@ app.get("/", (req, res) => res.render("home"));
 // Use the routes
 app.use(Routes);
 
-let PORT = 8500;
+let PORT = 8600;
 app.listen(PORT, () => console.log(`Server on ${PORT}`));
